@@ -1,26 +1,26 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup>
+import { shallowRef } from 'vue'
+import CompA from './components/CompA.vue'
+import CompB from './components/CompB.vue'
+import CompC from './components/CompC.vue'
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const current = shallowRef(CompA)
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
 </script>
 
+<template>
+
+<div class="demo">
+  <label><input type="radio" v-model="current" :value="CompA"></label>
+  <label><input type="radio" v-model="current" :value="CompB"></label>
+  <label><input type="radio" v-model="current" :value="CompC"></label>
+  <keep-alive>
+    <component :is="current"></component>
+  </keep-alive>
+</div>
+
+</template>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
